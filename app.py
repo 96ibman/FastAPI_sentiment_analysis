@@ -15,7 +15,7 @@ class TextInput(BaseModel):
     text: str
 
 @app.get("/")
-def read_root():
+async def read_root():
     return {"message": "Welcome to the Sentiment Analysis API!"}
 
 @app.post("/analyze")
@@ -27,5 +27,8 @@ def analyze_sentiment(input_data: TextInput):
     result = sentiment_pipeline(text)
     return {"input": text, "analysis": result[0]}
 
+# To run with (python app.py) Uncomment this. To run with uvicorn leave this commented
+"""
 if __name__ == "__main__":
     uvicorn.run("app:app", host="127.0.0.1", port=8000, reload=True)
+"""
